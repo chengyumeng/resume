@@ -70,30 +70,11 @@ pre:not(:empty) {
  * 我来加一些代码高亮，以增加可读性如何？
  */
 
-.comment {
-  color: #857F6B;
-  font-style: italic;
-}
-
-.selector {
-  color: #E69F0F;
-}
-
-.selector .key {
-  color: #64D5EA;
-}
-
-.key {
-  color: #64D5EA;
-}
-
-.value {
-  color: #BE84F2;
-}
-
-.value.px {
-  color: #F92772;
-}
+.comment { color: #857F6B;font-style: italic;}
+.selector { color: #E69F0F; }
+.selector .property { color: #64D5EA; }
+.property { color: #64D5EA; }
+.punctuation { color: #BE84F2; }
 
 /**
  * emmm，一顿操作猛如虎。
