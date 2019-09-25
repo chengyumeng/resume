@@ -41,7 +41,7 @@ module.exports = "<div id=\"app\">\n  <app-editor [code]=\"currentStyle\"></app-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"content\">\n  <div class=\"code\" [innerHTML]=\"codeInStyleTag\"></div>\n  <pre [innerHTML]=\"highlightedCode\"  contenteditable id=\"style-text\"></pre>\n</div>\n"
+module.exports = "<div class=\"code\" [innerHTML]=\"codeInStyleTag\"></div>\n<div class=\"content\">\n  <pre [innerHTML]=\"highlightedCode\" id=\"style-text\"></pre>\n</div>\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<div id=\"content\">\n  <div class=\"code\" [innerHTML]=\"code
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"content\" class=\"md\">\n    <pre id=\"work-text\" [innerHTML]=\"result\"></pre>\n</div>\n"
+module.exports = "<div class=\"content md\">\n    <pre id=\"work-text\" [innerHTML]=\"result\"></pre>\n</div>\n"
 
 /***/ }),
 
@@ -129,7 +129,6 @@ var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.currentStyle = '';
         this.currentMarkdown = '';
-        this.enableHtml = true;
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -255,14 +254,9 @@ var EditorComponent = /** @class */ (function () {
     EditorComponent.prototype.ngOnInit = function () {
         var _this = this;
         setInterval(function () {
-            var myDiv = document.getElementById('style-text');
-            myDiv.scrollTop = myDiv.scrollHeight;
-            console.log(myDiv.scrollHeight);
-        }, 600);
-        setInterval(function () {
             if (_this.currentcode !== _this.code) {
-                var myDiv = document.getElementById('style-text');
-                myDiv.scrollTop = myDiv.scrollHeight;
+                var stylePre = document.getElementById('style-text');
+                stylePre.scrollTop = stylePre.scrollHeight;
                 _this.currentcode = _this.code;
             }
         }, 600);
@@ -332,8 +326,10 @@ var MdComponent = /** @class */ (function () {
         var _this = this;
         setInterval(function () {
             if (_this.currentmd !== _this.markdown) {
-                var myDiv = document.getElementById('work-text');
-                myDiv.scrollTop = myDiv.scrollHeight;
+                var mdPre = document.getElementById('work-text');
+                mdPre.scrollTop = mdPre.scrollHeight;
+                console.log(mdPre.scrollTop);
+                console.log(mdPre.scrollHeight);
                 _this.currentmd = _this.markdown;
             }
         }, 600);
@@ -398,7 +394,7 @@ var md = "Chengyumeng\n=========\n##### Full-Stack DevOps Kubernetes Docker Go P
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "style", function() { return style; });
-var style = "/**\n *\n * \u4F60\u597D\uFF0C\u6211\u662F\u7A0B\u5929\u5C0F\u90AE\u5DEE\uFF0C\u672C\u79D1\u6BD5\u4E1A\u4E8E\u5409\u6797\u5927\u5B66\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F\u5B66\u9662\uFF0C\u76EE\u524D\u5728\u4E2D\u5173\u6751\u505A\u5168\u6808\u6253\u5B57\u5458\uFF0C\u5076\u5C14\u505A\u4E00\u4E9B\u5F00\u6E90\u7684\u4E8B\u60C5\u3002\n *\n * \u76EE\u524D\u4E3B\u8981\u5199 Go \u548C Python\uFF0C\u7531\u4E8E\u5929\u8D4B\u8F83\u597D\uFF0C\u6211\u4E5F\u80FD\u6D41\u5229\u5730\u4F7F\u7528 Angular \u548C Vue \u548C\u524D\u7AEF\u540C\u5B66\u4EA4\u6D41\u3002\n *\n * \u8FD9\u79CD HTML \u7B80\u5386\u5E76\u975E\u6211\u539F\u521B\uFF0C\u4F46\u662F\u6211\u89C9\u5F97\u5F88\u6709\u610F\u601D\uFF0C\u5C31\u7ED9\u81EA\u5DF1\u5199\u4E86\u4E00\u4E2A\u3002\n */\n\n/**\n * \u4E3A\u4E86\u70AB\u9177\u4E00\u70B9\uFF0C\u5148\u7ED9\u6240\u6709\u5143\u7D20\u90FD\u52A0\u4E0A\u8FC7\u6E21\u6548\u679C\u3002\n */\n\n* {\n  -webkit-transition: all 1s;\n}\n\n/**\n * \u73B0\u5728\u4F3C\u4E4E\u6CA1\u4EC0\u4E48\u7528\uFF0C\u4E0D\u8FC7\u4E00\u4F1A\u513F\u4F60\u5C31\u80FD\u611F\u53D7\u5230\u4E86\u3002\n *\n * \u767D\u7EB8\u9ED1\u5B57\u6709\u70B9\u5355\u8C03\uFF0C\u6211\u6765\u53D8\u6362\u4E00\u4E0B\u3002\n */\n\nhtml {\n  background: rgb(63, 82, 99);\n}\n\n/***\n * \u518D\u7B49\u7B49\u2026\u2026\n */\n\npre, a {\n  color: white;\n}\n\n/**\n * \u8FD9\u6837\u53EF\u80FD\u597D\u4E00\u4E9B\uFF0C\u4E0D\u8FC7\u4F3C\u4E4E\u8FD8\u662F\u6709\u70B9\u8FA3\u773C\u775B\u3002\n *\n * \u5728\u6574\u4E2A\u7A97\u53E3\u80E1\u641E\u4E00\u70B9\u90FD\u4E0D\u7F8E\u89C2\u3002\n *\n * \u8BA9\u6211\u6765\u5C01\u88C5\u4E00\u4E2A\u5DE5\u4F5C\u533A\u3002\n */\n\npre:not(:empty) {\n  overflow: auto;\n  background: rgb(48, 48, 48);\n  border: 1px solid #ccc;\n  max-height: 44.6%;\n  width: 49%;\n  font-size: 14px;\n  font-family: monospace;\n  padding: 10px 10px 20px;\n  box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.3);\n  white-space: pre-wrap;\n  outline: 0;\n}\n\n/**\n * OK\uFF0C\u6211\u4EEC\u5C06\u5F00\u59CB\u586B\u5145\u5C4F\u5E55\u3002\n * \u8BA9\u6211\u4EEC\u51C6\u5907\u597D\u505A\u4E00\u4E9B\u5DE5\u4F5C\u3002\n */\n\n#style-text {\n  -webkit-transform: translateX(95%);\n  position: absolute;\n}\n\n/**\n * \u4ECD\u7136\u6709\u4E9B\u4E0D\u8DB3\uFF0C\u5C31\u662F\u6240\u6709\u5B57\u4F53\u90FD\u662F\u767D\u8272\u3002\n * \u6211\u6765\u52A0\u4E00\u4E9B\u4EE3\u7801\u9AD8\u4EAE\uFF0C\u4EE5\u589E\u52A0\u53EF\u8BFB\u6027\u5982\u4F55\uFF1F\n */\n\n.comment {\n  color: #857F6B;\n  font-style: italic;\n}\n\n.selector {\n  color: #E69F0F;\n}\n\n.selector .key {\n  color: #64D5EA;\n}\n\n.key {\n  color: #64D5EA;\n}\n\n.value {\n  color: #BE84F2;\n}\n\n.value.px {\n  color: #F92772;\n}\n\n/**\n * emmm\uFF0C\u4E00\u987F\u64CD\u4F5C\u731B\u5982\u864E\u3002\n * \u6211\u4EEC\u9700\u8981\u8BA9\u7A97\u4F53\u66F4\u53EF\u63A7\u4E00\u4E9B\u3002\n */\n\nbody {\n  -webkit-perspective: 1000px;\n}\n\n#style-text {\n  -webkit-transform: translateX(98.5%) rotateY(-10deg);\n  -webkit-transform-origin: right;\n  max-height: 94.5%;\n}\n\n/**\n * \u5230\u6B64\u4E3A\u6B62\uFF0C\u8FD9\u4E2A\u7A97\u4F53\u5DF2\u7ECF\u5F88\u60CA\u8273\u4E86\uFF01\n */\n\npre:not(#style-text) {\n  -webkit-transform: rotateY(10deg);\n  -webkit-transform-origin: left;\n}\n";
+var style = "/**\n *\n * \u4F60\u597D\uFF0C\u6211\u662F\u7A0B\u5929\u5C0F\u90AE\u5DEE\uFF0C\u672C\u79D1\u6BD5\u4E1A\u4E8E\u5409\u6797\u5927\u5B66\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F\u5B66\u9662\uFF0C\u76EE\u524D\u5728\u4E2D\u5173\u6751\u505A\u5168\u6808\u6253\u5B57\u5458\uFF0C\u5076\u5C14\u505A\u4E00\u4E9B\u5F00\u6E90\u7684\u4E8B\u60C5\u3002\n *\n * \u76EE\u524D\u4E3B\u8981\u5199 Go \u548C Python\uFF0C\u7531\u4E8E\u5929\u8D4B\u8F83\u597D\uFF0C\u6211\u4E5F\u80FD\u6D41\u5229\u5730\u4F7F\u7528 Angular \u548C Vue \u548C\u524D\u7AEF\u540C\u5B66\u4EA4\u6D41\u3002\n *\n * \u8FD9\u79CD HTML \u7B80\u5386\u5E76\u975E\u6211\u539F\u521B\uFF0C\u4F46\u662F\u6211\u89C9\u5F97\u5F88\u6709\u610F\u601D\uFF0C\u5C31\u7ED9\u81EA\u5DF1\u5199\u4E86\u4E00\u4E2A\u3002\n */\n\n/**\n * \u4E3A\u4E86\u70AB\u9177\u4E00\u70B9\uFF0C\u5148\u7ED9\u6240\u6709\u5143\u7D20\u90FD\u52A0\u4E0A\u8FC7\u6E21\u6548\u679C\u3002\n */\n\n* {\n  -webkit-transition: all 1s;\n}\n\n/**\n * \u73B0\u5728\u4F3C\u4E4E\u6CA1\u4EC0\u4E48\u7528\uFF0C\u4E0D\u8FC7\u4E00\u4F1A\u513F\u4F60\u5C31\u80FD\u611F\u53D7\u5230\u4E86\u3002\n *\n * \u767D\u7EB8\u9ED1\u5B57\u6709\u70B9\u5355\u8C03\uFF0C\u6211\u6765\u53D8\u6362\u4E00\u4E0B\u3002\n */\n\nhtml {\n  background: rgb(63, 82, 99);\n}\n\n/***\n * \u518D\u7B49\u7B49\u2026\u2026\n */\n\npre, a {\n  color: white;\n}\n\n/**\n * \u8FD9\u6837\u53EF\u80FD\u597D\u4E00\u4E9B\uFF0C\u4E0D\u8FC7\u4F3C\u4E4E\u8FD8\u662F\u6709\u70B9\u8FA3\u773C\u775B\u3002\n *\n * \u5728\u6574\u4E2A\u7A97\u53E3\u80E1\u641E\u4E00\u70B9\u90FD\u4E0D\u7F8E\u89C2\u3002\n *\n * \u8BA9\u6211\u6765\u5C01\u88C5\u4E00\u4E2A\u5DE5\u4F5C\u533A\u3002\n */\n\npre:not(:empty) {\n  overflow: auto;\n  background: rgb(48, 48, 48);\n  border: 1px solid #ccc;\n  max-height: 44.6%;\n  width: 49%;\n  font-size: 14px;\n  font-family: monospace;\n  padding: 10px 10px 20px;\n  box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.3);\n  white-space: pre-wrap;\n  outline: 0;\n}\n\n/**\n * OK\uFF0C\u6211\u4EEC\u5C06\u5F00\u59CB\u586B\u5145\u5C4F\u5E55\u3002\n * \u8BA9\u6211\u4EEC\u51C6\u5907\u597D\u505A\u4E00\u4E9B\u5DE5\u4F5C\u3002\n */\n\n#style-text {\n  -webkit-transform: translateX(95%);\n  position: absolute;\n}\n\n/**\n * \u4ECD\u7136\u6709\u4E9B\u4E0D\u8DB3\uFF0C\u5C31\u662F\u6240\u6709\u5B57\u4F53\u90FD\u662F\u767D\u8272\u3002\n * \u6211\u6765\u52A0\u4E00\u4E9B\u4EE3\u7801\u9AD8\u4EAE\uFF0C\u4EE5\u589E\u52A0\u53EF\u8BFB\u6027\u5982\u4F55\uFF1F\n */\n\n.comment { color: #857F6B;font-style: italic;}\n.selector { color: #E69F0F; }\n.selector .property { color: #64D5EA; }\n.property { color: #64D5EA; }\n.punctuation { color: #BE84F2; }\n\n/**\n * emmm\uFF0C\u4E00\u987F\u64CD\u4F5C\u731B\u5982\u864E\u3002\n * \u6211\u4EEC\u9700\u8981\u8BA9\u7A97\u4F53\u66F4\u53EF\u63A7\u4E00\u4E9B\u3002\n */\n\nbody {\n  -webkit-perspective: 1000px;\n}\n\n#style-text {\n  -webkit-transform: translateX(98.5%) rotateY(-10deg);\n  -webkit-transform-origin: right;\n  max-height: 94.5%;\n}\n\n/**\n * \u5230\u6B64\u4E3A\u6B62\uFF0C\u8FD9\u4E2A\u7A97\u4F53\u5DF2\u7ECF\u5F88\u60CA\u8273\u4E86\uFF01\n */\n\npre:not(#style-text) {\n  -webkit-transform: rotateY(10deg);\n  -webkit-transform-origin: left;\n}\n";
 
 
 /***/ }),

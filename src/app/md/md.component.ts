@@ -8,7 +8,7 @@ import Markdown from 'markdown';
 })
 export class MdComponent implements OnInit {
   @Input() markdown: string;
-  currentmd : string;
+  currentmd: string;
 
   get result(): string | SafeHtml {
     return this.domSanitizer.bypassSecurityTrustHtml(Markdown.markdown.toHTML(this.markdown));
@@ -19,8 +19,10 @@ export class MdComponent implements OnInit {
   ngOnInit() {
     setInterval(() => {
       if (this.currentmd !== this.markdown) {
-        const myDiv = document.getElementById('work-text');
-        myDiv.scrollTop = myDiv.scrollHeight;
+        const mdPre = document.getElementById('work-text');
+        mdPre.scrollTop = mdPre.scrollHeight;
+        console.log(mdPre.scrollTop);
+        console.log(mdPre.scrollHeight);
         this.currentmd = this.markdown;
       }
     }, 600);

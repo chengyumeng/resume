@@ -19,19 +19,13 @@ export class EditorComponent implements OnInit {
     return this.domSanitizer.bypassSecurityTrustHtml(Prism.highlight(this.code, Prism.languages.css));
   }
 
-  constructor(private domSanitizer: DomSanitizer) {
-  }
+  constructor(private domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
     setInterval(() => {
-      const myDiv = document.getElementById('style-text');
-      myDiv.scrollTop = myDiv.scrollHeight;
-      console.log(myDiv.scrollHeight);
-    }, 600);
-    setInterval(() => {
       if (this.currentcode !== this.code) {
-        const myDiv = document.getElementById('style-text');
-        myDiv.scrollTop = myDiv.scrollHeight;
+        const stylePre = document.getElementById('style-text');
+        stylePre.scrollTop = stylePre.scrollHeight;
         this.currentcode = this.code;
       }
     }, 600);

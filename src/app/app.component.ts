@@ -15,7 +15,6 @@ const INTERVAL = 40;
 export class AppComponent implements OnInit {
   currentStyle = '';
   currentMarkdown = '';
-  enableHtml = true;
 
   ngOnInit(): void {
     const styleSection1$ = from(style)
