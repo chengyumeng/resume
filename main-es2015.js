@@ -41,7 +41,7 @@ module.exports = "<div id=\"app\">\n  <app-editor [code]=\"currentStyle\"></app-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"content\">\n  <div class=\"code\" [innerHTML]=\"codeInStyleTag\"></div>\n  <pre [innerHTML]=\"highlightedCode\"  contenteditable id=\"style-text\"></pre>\n</div>\n"
+module.exports = "<div class=\"code\" [innerHTML]=\"codeInStyleTag\"></div>\n<div class=\"content\">\n  <pre [innerHTML]=\"highlightedCode\" id=\"style-text\"></pre>\n</div>\n"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<div id=\"content\">\n  <div class=\"code\" [innerHTML]=\"code
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"content\" class=\"md\">\n    <pre id=\"work-text\" [innerHTML]=\"result\"></pre>\n</div>\n"
+module.exports = "<div class=\"content md\">\n    <pre id=\"work-text\" [innerHTML]=\"result\"></pre>\n</div>\n"
 
 /***/ }),
 
@@ -126,7 +126,6 @@ let AppComponent = class AppComponent {
     constructor() {
         this.currentStyle = '';
         this.currentMarkdown = '';
-        this.enableHtml = true;
     }
     ngOnInit() {
         const styleSection1$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(_data_style_css__WEBPACK_IMPORTED_MODULE_5__["style"])
@@ -238,14 +237,9 @@ let EditorComponent = class EditorComponent {
     }
     ngOnInit() {
         setInterval(() => {
-            const myDiv = document.getElementById('style-text');
-            myDiv.scrollTop = myDiv.scrollHeight;
-            console.log(myDiv.scrollHeight);
-        }, 600);
-        setInterval(() => {
             if (this.currentcode !== this.code) {
-                const myDiv = document.getElementById('style-text');
-                myDiv.scrollTop = myDiv.scrollHeight;
+                const stylePre = document.getElementById('style-text');
+                stylePre.scrollTop = stylePre.scrollHeight;
                 this.currentcode = this.code;
             }
         }, 600);
@@ -309,8 +303,10 @@ let MdComponent = class MdComponent {
     ngOnInit() {
         setInterval(() => {
             if (this.currentmd !== this.markdown) {
-                const myDiv = document.getElementById('work-text');
-                myDiv.scrollTop = myDiv.scrollHeight;
+                const mdPre = document.getElementById('work-text');
+                mdPre.scrollTop = mdPre.scrollHeight;
+                console.log(mdPre.scrollTop);
+                console.log(mdPre.scrollHeight);
                 this.currentmd = this.markdown;
             }
         }, 600);
@@ -534,30 +530,11 @@ pre:not(:empty) {
  * 我来加一些代码高亮，以增加可读性如何？
  */
 
-.comment {
-  color: #857F6B;
-  font-style: italic;
-}
-
-.selector {
-  color: #E69F0F;
-}
-
-.selector .key {
-  color: #64D5EA;
-}
-
-.key {
-  color: #64D5EA;
-}
-
-.value {
-  color: #BE84F2;
-}
-
-.value.px {
-  color: #F92772;
-}
+.comment { color: #857F6B;font-style: italic;}
+.selector { color: #E69F0F; }
+.selector .property { color: #64D5EA; }
+.property { color: #64D5EA; }
+.punctuation { color: #BE84F2; }
 
 /**
  * emmm，一顿操作猛如虎。
