@@ -1,0 +1,13 @@
+matrix:
+  include:
+    - language: node_js
+      os:
+        - linux
+        - osx
+      node_js:
+        - 10.16.0
+      before_install:
+        - npm install
+      script:
+        - npm run build
+        - npm run lint
