@@ -26,7 +26,6 @@ export const mdstyle = `
 /**
  * OK，基础工作已经完成。
  * 我们来对 markdown 的细节优化下吧。
- * 
  * 字体
  * 标题
  * 列表
