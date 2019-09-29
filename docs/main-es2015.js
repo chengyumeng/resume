@@ -421,9 +421,9 @@ const md = `Chengyumeng
 
 Contact
 -------
-* 792400644@qq.com
-* WeChat Official Accounts: 中关村男子图鉴 (pod1024)
-* Github:https://github.com/chengyumeng
+* Email: 792400644@qq.com
+* WeChat Official Accounts: pod1024
+* Github: https://github.com/chengyumeng
 
 Open Source
 --------
@@ -435,7 +435,7 @@ Open Source
 
 Work Experience
 -----------
-* 2015.08-2017.06 聚法科技（长春）有限公司
+* 2015.08-2017.06 Jufa Technology (Changchun) Co., Ltd.
 * 2017.07-2019.03 Qihoo 360 Technology Co. Ltd.
 * 2019.03-now Beijing Megvii Co., Ltd
 * ……
